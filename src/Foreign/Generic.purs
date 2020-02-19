@@ -7,14 +7,18 @@ module Foreign.Generic
   , encodeJSON
   , genericDecodeJSON
   , genericEncodeJSON
+  , module Reexports
   ) where
 
 import Prelude
 
 import Data.Generic.Rep (class Generic, from, to)
 import Foreign (F, Foreign)
+import Foreign.Class (class Decode, class Encode, decode, encode) as Reexports
 import Foreign.Class (class Decode, class Encode, decode, encode)
 import Foreign.Generic.Class (class GenericDecode, class GenericEncode, decodeOpts, encodeOpts)
+import Foreign.Generic.Class (class GenericDecode, class GenericEncode, decodeOpts, encodeOpts) as Reexports
+import Foreign.Generic.Types (Options, SumEncoding(..)) as Reexports
 import Foreign.Generic.Types (Options, SumEncoding(..))
 import Foreign.JSON (parseJSON, decodeJSONWith)
 import Global.Unsafe (unsafeStringify)
@@ -48,7 +52,7 @@ aesonSumEncoding = TaggedObject
         , constructorTagTransform: identity
         , unwrapRecords: true
         }
-  
+
 -- | Read a value which has a `Generic` type.
 genericDecode
   :: forall a rep
